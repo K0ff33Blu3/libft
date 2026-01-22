@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miricci <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: miricci <miricci@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 13:48:37 by miricci           #+#    #+#             */
-/*   Updated: 2024/12/02 13:48:38 by miricci          ###   ########.fr       */
+/*   Created: 2024/12/02 13:29:29 by miricci           #+#    #+#             */
+/*   Updated: 2026/01/22 16:56:10 by miricci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libsimplelist.h"
 /*
-void    del_content(void *content)
-{
-    free(content);
-}
-
-void    *to_uppercase(void *content)
+void to_uppercase(void *content)
 {
     char *str = (char *)content;
     while (*str)
@@ -26,40 +21,15 @@ void    *to_uppercase(void *content)
             *str -= 32;
         str++;
     }
-    return(content);
-}
-
-void    to_lowercase(void *content)
-{
-    char *str = (char *)content;
-    while (*str)
-    {
-        if (*str >= 'A' && *str <= 'Z')
-            *str += 32;
-        str++;
-    }
 }
 */
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*new_list;
-	t_list	*new_node;
-
-	new_list = NULL;
-	if (!lst | !f | !del)
-		return (NULL);
 	while (lst)
 	{
-		new_node = ft_lstnew(f(lst->content));
-		if (!new_node)
-		{
-			ft_lstclear(&new_list, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&new_list, new_node);
+		f(lst->content);
 		lst = lst->next;
 	}
-	return (new_list);
 }
 /*
 int main(void)
@@ -68,23 +38,22 @@ int main(void)
     t_list *node2 = (t_list *)malloc(sizeof(t_list));
     t_list *node3 = (t_list *)malloc(sizeof(t_list));
     t_list *tmp;
-    t_list  *new_list;
 
     if (!node1 || !node2 || !node3)
         return (1);
 
     // Inizializza i nodi
-    node1->content = strdup("hello");
+    node1->content = "hello";
     node1->next = node2;
 
-    node2->content = strdup("world");
+    node2->content = "world";
     node2->next = node3;
 
-    node3->content = strdup("list");
+    node3->content = "list";
     node3->next = NULL;
 
     // Stampa la lista prima dell'iterazione
-    printf("Before ft_lstmap:\n");
+    printf("Before ft_lstiter:\n");
     tmp = node1;
     while (tmp)
     {
@@ -93,15 +62,15 @@ int main(void)
     }
 
     // Applica ft_lstiter con la funzione to_uppercase
-    new_list = ft_lstmap(node1, to_uppercase, del_content);
-    //t_lstiter(node1, to_lowercase);
+    ft_lstiter(node1, to_uppercase);
 
     // Stampa la lista dopo l'iterazione
-    printf("\nAfter ft_lstmap:\n");
-    while (new_list)
+    printf("\nAfter ft_lstiter:\n");
+    tmp = node1;
+    while (tmp)
     {
-        printf("%s\n", (char *)new_list->content);
-        new_list = new_list->next;
+        printf("%s\n", (char *)tmp->content);
+        tmp = tmp->next;
     }
     return (0);
 }

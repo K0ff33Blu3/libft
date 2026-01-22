@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miricci <miricci@student.42.fr>            +#+  +:+       +#+        */
+/*   By: miricci <miricci@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 10:59:07 by miricci           #+#    #+#             */
-/*   Updated: 2025/03/04 15:16:46 by miricci          ###   ########.fr       */
+/*   Updated: 2026/01/22 16:51:17 by miricci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libsimplelist.h"
 
 t_list	*ft_lstnew(void *content)
 {
