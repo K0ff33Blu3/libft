@@ -6,7 +6,7 @@
 /*   By: miricci <miricci@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 18:55:16 by miricci           #+#    #+#             */
-/*   Updated: 2026/01/22 16:54:36 by miricci          ###   ########.fr       */
+/*   Updated: 2026/01/29 11:46:18 by miricci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
 void	ft_free(void **s, int i);
-
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+int		skip_spaces(char *line, int count);
 #endif
